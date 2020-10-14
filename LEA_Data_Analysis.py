@@ -1,17 +1,7 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[ ]:
-
-
 import pandas as pd
-import numpy as np
 from numpy import trapz
 import plotly.express as px
 from operator import add
-
-
-# In[5]:
 
 
 def compare(arg1, *args,des,ang=1,vel=1,lower=200,upper=6000):
@@ -22,7 +12,7 @@ def compare(arg1, *args,des,ang=1,vel=1,lower=200,upper=6000):
     for trial in range(1,4):
         x = arg1+'_a'+ang+'_v'+vel+'_'+str(trial)+'.txt'
         try:
-            dfx = pd.read_fwf(x)
+            dfx = pd.read_fwf('./Testing Data./'+x)
 
             freq,level = [],[]
             for n in dfx['Frequency (Hz)\tLevel (dB)']:
@@ -50,7 +40,7 @@ def compare(arg1, *args,des,ang=1,vel=1,lower=200,upper=6000):
         for trial in range(1,4):
             x = arg+'_a'+ang+'_v'+vel+'_'+str(trial)+'.txt'
             try:
-                dfx = pd.read_fwf(x)
+                dfx = pd.read_fwf('./Testing Data./'+x)
                 count += 1
 
                 freq,level = [],[]
@@ -103,8 +93,4 @@ def compare(arg1, *args,des,ang=1,vel=1,lower=200,upper=6000):
         print(round(comp['Level'][i],3))
 
 
-# In[ ]:
-
-
-
-
+compare('p0','z1',ang=1,vel=3,des=['Final','Reference'])
